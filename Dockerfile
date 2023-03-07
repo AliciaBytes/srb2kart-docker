@@ -71,6 +71,6 @@ VOLUME /data
 VOLUME /logs
 VOLUME /luafiles
 
-EXPOSE 5029
+EXPOSE 5029/udp
 
 ENTRYPOINT ["./entrypoint.sh"]
