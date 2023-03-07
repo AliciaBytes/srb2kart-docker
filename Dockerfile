@@ -8,6 +8,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
     curl \
+    ca-certificates \
     unzip \
     build-essential \
     libpng-dev \
@@ -22,11 +23,11 @@ RUN apt-get update \
 
 RUN mkdir -p /srb2kart \
     && mkdir -p /srb2kart-assets \
-    && curl -L -o "/tmp/srb2kart-v${SRB2KART_VERSION}-src.tar.gz" "https://github.com/STJr/Kart-Public/archive/refs/tags/v${SRB2KART_VERSION}.tar.gz" \
-    && tar -xf "/tmp/srb2kart-v${SRB2KART_VERSION}-src.tar.gz" -C /tmp/ \
-    && cp -r "/tmp/Kart-Public-${SRB2KART_VERSION}/"* /srb2kart/ \
-    && curl -L -o "/tmp/srb2kart-v${SRB2KART_VERSION}-assets.zip" "https://github.com/STJr/Kart-Public/releases/download/v${SRB2KART_VERSION}/AssetsLinuxOnly.zip" \
-    && unzip "/tmp/srb2kart-v${SRB2KART_VERSION}-assets.zip" -d /srb2kart-assets \
+    && curl -L -o /tmp/srb2kart-v"${SRB2KART_VERSION}"-src.tar.gz https://github.com/STJr/Kart-Public/archive/refs/tags/v"${SRB2KART_VERSION}".tar.gz \
+    && tar -xf /tmp/srb2kart-v"${SRB2KART_VERSION}"-src.tar.gz -C /tmp/ \
+    && cp -r /tmp/Kart-Public-"${SRB2KART_VERSION}"/* /srb2kart/ \
+    && curl -L -o /tmp/srb2kart-v"${SRB2KART_VERSION}"-assets.zip https://github.com/STJr/Kart-Public/releases/download/v"${SRB2KART_VERSION}"/AssetsLinuxOnly.zip \
+    && unzip /tmp/srb2kart-v"${SRB2KART_VERSION}"-assets.zip -d /srb2kart-assets \
     && rm -rf /tmp/*
 
 WORKDIR /srb2kart/src
@@ -70,8 +71,6 @@ VOLUME /data
 VOLUME /logs
 VOLUME /luafiles
 
-
 EXPOSE 5029
-
 
 ENTRYPOINT ["./entrypoint.sh"]

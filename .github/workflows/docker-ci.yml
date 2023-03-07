@@ -1,0 +1,32 @@
+---
+name: Check building the docker image without publishing
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Build and push
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          push: false
+          tags: |
+            alicianibbles/srb2kart:latest
+            alicianibbles/srb2kart:2.6
+            alicianibbles/srb2kart:2
