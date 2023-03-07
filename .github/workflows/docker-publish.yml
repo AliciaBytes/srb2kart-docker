@@ -31,3 +31,9 @@ jobs:
             alicianibbles/srb2kart:latest
             alicianibbles/srb2kart:2.6
             alicianibbles/srb2kart:2
+      - name: Update repo description
+        uses: peter-evans/dockerhub-description@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          repository: alicianibbles/srb2kart
