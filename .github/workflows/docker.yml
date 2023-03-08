@@ -1,17 +1,30 @@
 ---
-name: Publish on docker hub
+name: Check building the docker image without publishing
 
 on:
   push:
     branches:
       - "main"
+  pull_request:
+    branches: [main]
+
+env:
+  PUSH_DOCKER: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
 
 jobs:
   docker:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        platforms: ["linux/amd64", "linux/arm64"]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Cache Docker layers
+        uses: actions/cache@v2
+        with:
+          path: /tmp/.buildx-cache
+          key: buildx-debian-${{ matrix.platforms }}
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
@@ -25,12 +38,22 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          platforms: linux/amd64,linux/arm64
-          push: true
+          platforms: ${{ matrix.platforms }}
+          push: ${{ env.PUSH_DOCKER }}
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache,mode=max
           tags: |
             alicianibbles/srb2kart:latest
             alicianibbles/srb2kart:2.6
             alicianibbles/srb2kart:2
+
+  update-description:
+    needs: [docker]
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
       - name: Update repo description
         uses: peter-evans/dockerhub-description@v3
         with:
