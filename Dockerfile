@@ -39,6 +39,14 @@ FROM debian:11.6-slim AS finished
 
 ENV ROOM_ID=
 ENV PASSWORD=
+ENV BANDWIDTH=
+ENV BINDADDR=
+ENV BINDADDR6=
+ENV EXTRATIC=
+ENV IPV6=
+ENV PACKETSIZE=
+ENV SERVERPORT=5029
+ENV USEUPNP=
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
@@ -71,6 +79,6 @@ VOLUME /data
 VOLUME /logs
 VOLUME /luafiles
 
-EXPOSE 5029/udp
+EXPOSE ${SERVERPORT}/udp
 
 ENTRYPOINT ["./entrypoint.sh"]
