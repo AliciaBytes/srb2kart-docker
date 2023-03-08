@@ -14,9 +14,6 @@ env:
 jobs:
   docker:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        platforms: ["linux/amd64", "linux/arm64"]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -24,7 +21,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: /tmp/.buildx-cache
-          key: buildx-debian-${{ matrix.platforms }}
+          key: buildx-debian
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
@@ -38,7 +35,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          platforms: ${{ matrix.platforms }}
+          platforms: linux/amd64,linux/arm64
           push: ${{ env.PUSH_DOCKER }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache,mode=max
