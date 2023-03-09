@@ -7,15 +7,13 @@ This is a docker container for [SRB2Kart](https://mb.srb2.org/addons/srb2kart.24
 - `ROOM_ID`: If specified it will advertise the server on the [master server](https://wiki.srb2.org/wiki/Master_Server). It specifies in which room ID it should be advertised.
 - `PASSWORD`: Sets the password to [log in](https://wiki.srb2.org/wiki/Console/Commands#login) as an administrator on the server within the game.
 - `BANDWIDTH`: Sets the bandwidth in bytes per second. Default is 30000 bytes per second, minimum allowed value is 1000 bytes per second.
-- `BINDADDR`: Listen for connections only on the specified incoming addresses. List of addresses is space separated.
-- `BINDADDR6`: Same as `BINDADDR` but for IPv6 addresses. Requires `IPV6` to be set.
 - `EXTRATIC`: Specifies up to how many extra previous tics to send to the client per server tic.
 - `IPV6`: Listens to incoming IPv6 connections. Warning, this is untested.
 - `PACKETSIZE`: Changes the size of UDP packets sent.
 - `SERVERPORT`: Specifies the UDP port to use. Default is 5029.
 - `USEUPNP`: Turns on Universal Plug and Play support. This feature is untested.
 
-For more information see the official documentation on [Command-line parameters](https://wiki.srb2.org/wiki/Command_line_parameters) since the environment variables for the docker container mirror those.
+For more information see the official documentation on [Command-line parameters](https://wiki.srb2.org/wiki/Command_line_parameters) since the environment variables for the docker container mirror those. You can also pass them as command-line arguments, but environment variables are recommended.
 
 ## Persistent Data
 
