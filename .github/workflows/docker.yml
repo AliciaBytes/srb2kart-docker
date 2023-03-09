@@ -7,6 +7,8 @@ on:
       - "main"
   pull_request:
     branches: [main]
+  schedule:
+    - cron: "1 0 * * 0" # every sunday at 1 am
 
 env:
   PUSH_DOCKER: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
@@ -41,8 +43,9 @@ jobs:
           cache-to: type=local,dest=/tmp/.buildx-cache,mode=max
           tags: |
             alicianibbles/srb2kart:latest
-            alicianibbles/srb2kart:2.6
-            alicianibbles/srb2kart:2
+            alicianibbles/srb2kart:1
+            alicianibbles/srb2kart:1.6
+            alicianibbles/srb2kart:1.6.${{ github.run_id }}
 
   update-description:
     needs: [docker]
