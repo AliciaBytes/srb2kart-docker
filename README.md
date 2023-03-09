@@ -2,6 +2,15 @@
 
 This is a docker container for [SRB2Kart](https://mb.srb2.org/addons/srb2kart.2435/) for ease of setting up a server. It automatically downloads and builds the source code from the public [SRB2Kart releases](https://github.com/STJr/Kart-Public/releases).
 
+## Docker Tags
+
+The tags for this container will be in varying granularities. As a basis you have the following tags:
+
+- `latest`: Always the latest major and minor version.
+- `<major_version>`: E.g. `alicianibbles/srb2kart:1`. This is the latest docker image in that major version. This might update minor versions on the go as well as dependencies being updated.
+- `<major_version>.<minor_version>`: E.g. `alicianibbles/srb2kart:1.6`. This is the latest docker image with the respective major and minor version. This might still update dependencies on the fly while keeping a constant major and minor version.
+- `<major_version>.<minor_version>.<build_number>`: This one is a specific major and minor version pinned to a specific build. This one won't have any parts updated and will be a completely stable image.
+
 ## Environment Variables
 
 - `ROOM_ID`: If specified it will advertise the server on the [master server](https://wiki.srb2.org/wiki/Master_Server). It specifies in which room ID it should be advertised.
