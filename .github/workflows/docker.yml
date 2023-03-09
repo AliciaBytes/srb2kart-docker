@@ -1,5 +1,5 @@
 ---
-name: Check building the docker image without publishing
+name: Check building the docker image and possibly push
 
 on:
   push:
