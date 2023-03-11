@@ -67,11 +67,7 @@ RUN mkdir -p /addons /data /logs /luafiles \
     && ln -sf /data /srb2kart/data \
     && ln -sf /logs /srb2kart/logs \
     && ln -sf /luafiles /srb2kart/luafiles \
-    && chmod a+x entrypoint.sh \
-    && groupadd -r srb2kart && useradd --no-log-init -r -g srb2kart srb2kart \
-    && chown -R srb2kart /srb2kart entrypoint.sh
-
-USER srb2kart
+    && chmod a+x entrypoint.sh
 
 VOLUME /addons
 VOLUME /data
