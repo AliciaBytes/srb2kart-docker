@@ -13,7 +13,6 @@ The tags for this container will be in varying granularities. As a basis you hav
 
 ## Environment Variables
 
-- `ROOM_ID`: If specified it will advertise the server on the [master server](https://wiki.srb2.org/wiki/Master_Server). It specifies in which room ID it should be advertised.
 - `PASSWORD`: Sets the password to [log in](https://wiki.srb2.org/wiki/Console/Commands#login) as an administrator on the server within the game.
 - `BANDWIDTH`: Sets the bandwidth in bytes per second. Default is 30000 bytes per second, minimum allowed value is 1000 bytes per second.
 - `EXTRATIC`: Specifies up to how many extra previous tics to send to the client per server tic.
