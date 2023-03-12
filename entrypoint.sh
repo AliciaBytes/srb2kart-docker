@@ -16,6 +16,10 @@ if [ -n "$PACKETSIZE" ]; then
     PACKETSIZE="-packetsize $PACKETSIZE"
 fi
 
+if [ -n "$ROOM_ID" ]; then
+    ROOM_ID="-room $ROOM_ID"
+fi
+
 if [ -n "$SERVERPORT" ]; then
     SERVERPORT="-serverport $SERVERPORT"
 fi
@@ -35,5 +39,5 @@ if [ -n "$ADDONS" ]; then
 fi
 
 # shellcheck disable=SC2086
-/usr/bin/srb2kart -dedicated -home data -config data/config.cfg \
-    $BANDWIDTH $BINDADDR $BINDADDR6 $EXTRATIC $IPV6 $PACKETSIZE $SERVERPORT $USEUPNP $WARP "$@" $ADDONS
+/usr/bin/srb2kart -dedicated -home /srb2kart/data -config /srb2kart/data/config.cfg \
+    $BANDWIDTH $BINDADDR $BINDADDR6 $EXTRATIC $IPV6 $PACKETSIZE $ROOM_ID $SERVERPORT $USEUPNP $WARP "$@" $ADDONS
