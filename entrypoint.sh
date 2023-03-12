@@ -32,6 +32,8 @@ if [ -n "$ADDONS" ]; then
     ADDONS="-file ${ADDONS}"
 fi
 
+cd /srb2kart/data || exit
+
 # shellcheck disable=SC2086
-/usr/bin/srb2kart -dedicated -home data \
+/usr/bin/srb2kart -dedicated -home /srb2kart/data \
     $BANDWIDTH $BINDADDR $BINDADDR6 $EXTRATIC $IPV6 $PACKETSIZE $SERVERPORT $USEUPNP "$@" $ADDONS
