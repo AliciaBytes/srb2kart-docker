@@ -20,6 +20,7 @@ The tags for this container will be in varying granularities. As a basis you hav
 - `IPV6`: Listens to incoming IPv6 connections. Warning, this is untested.
 - `PACKETSIZE`: Changes the size of UDP packets sent.
 - `USEUPNP`: Turns on Universal Plug and Play support. This feature is untested.
+- `WARP`: Sets what map to warp to at the beginning of the game.
 
 For more information see the official documentation on [Command-line parameters](https://wiki.srb2.org/wiki/Command_line_parameters) since the environment variables for the docker container mirror those. You can also pass them as command-line arguments, but environment variables are recommended.
 

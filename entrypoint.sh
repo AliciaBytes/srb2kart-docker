@@ -1,7 +1,5 @@
 #!/bin/sh
 
-cd /srb2kart || exit
-
 if [ -n "$BANDWIDTH" ]; then
     BANDWIDTH="-bandwidth $BANDWIDTH"
 fi
@@ -26,14 +24,16 @@ if [ -n "$USEUPNP" ]; then
     USEUPNP="-useuPnP"
 fi
 
+if [ -n "$WARP" ]; then
+    WARP="-warp $WARP"
+fi
+
 ADDONS=$(ls /addons)
 
 if [ -n "$ADDONS" ]; then
     ADDONS="-file ${ADDONS}"
 fi
 
-cd /srb2kart/data || exit
-
 # shellcheck disable=SC2086
-/usr/bin/srb2kart -dedicated -home /srb2kart/data \
-    $BANDWIDTH $BINDADDR $BINDADDR6 $EXTRATIC $IPV6 $PACKETSIZE $SERVERPORT $USEUPNP "$@" $ADDONS
+/usr/bin/srb2kart -dedicated -home data -config data/config.cfg \
+    $BANDWIDTH $BINDADDR $BINDADDR6 $EXTRATIC $IPV6 $PACKETSIZE $SERVERPORT $USEUPNP $WARP "$@" $ADDONS
