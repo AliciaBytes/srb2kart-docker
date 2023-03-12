@@ -76,6 +76,4 @@ VOLUME /luafiles
 
 EXPOSE 5029/udp
 
-WORKDIR /srb2kart/data
-
-ENTRYPOINT ["/srb2kart/entrypoint.sh"]
+ENTRYPOINT ["./entrypoint.sh"]
