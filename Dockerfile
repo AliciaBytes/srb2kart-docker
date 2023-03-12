@@ -49,6 +49,7 @@ ENV USEUPNP=
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
+    ca-certificates \
     libsdl2-2.0-0 \
     libsdl2-mixer-2.0-0 \
     libpng16-16 \
