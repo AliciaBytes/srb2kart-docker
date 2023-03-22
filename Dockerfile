@@ -37,7 +37,6 @@ RUN make -j"$(nproc)" LINUX64=1 NOUPX=1 \
 
 FROM debian:11.6-slim AS finished
 
-ENV ROOM_ID=
 ENV PASSWORD=
 ENV BANDWIDTH=
 ENV BINDADDR=
@@ -63,16 +62,14 @@ COPY --from=builder /srb2kart/bin/Linux64/Release/lsdl2srb2kart /usr/bin/srb2kar
 COPY --from=builder /srb2kart-assets/* /srb2kart
 COPY entrypoint.sh entrypoint.sh
 
-RUN mkdir -p /addons /data /logs /luafiles \
+RUN mkdir -p /addons /data /logs /luafiles /srb2kart/data/.srb2kart \
     && ln -sf /addons /srb2kart/addons \
-    && ln -sf /data /srb2kart/data \
-    && ln -sf /logs /srb2kart/logs \
+    && ln -sf /data /srb2kart/data/.srb2kart \
     && ln -sf /luafiles /srb2kart/luafiles \
     && chmod a+x entrypoint.sh
 
 VOLUME /addons
 VOLUME /data
-VOLUME /logs
 VOLUME /luafiles
 
 EXPOSE 5029/udp
