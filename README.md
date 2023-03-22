@@ -35,8 +35,7 @@ This folder is mapped as a volume at `/addons` and should be used to store addon
 
 This folder is mapped as a volume at `/data` and holds general game data, and configuration files. Some notable files are:
 
-- `config.cfg`: general game configuration and [console variables](https://wiki.srb2.org/wiki/Console/Variables).
-- `adedsrv.cfg`: A [console script](https://wiki.srb2.org/wiki/Console_script) file that automatically gets loaded when starting the dedicated server. For example setting a nice [colored servername](https://mb.srb2.org/threads/colored-server-name-tutorial-chat-text-transparency.25474/).
+- `kartserv.cfg`: A [console script](https://wiki.srb2.org/wiki/Console_script) file that automatically gets loaded when starting the dedicated server. For example setting general game configuration, [console variables](https://wiki.srb2.org/wiki/Console/Variables), or a nice [colored server name](https://mb.srb2.org/threads/colored-server-name-tutorial-chat-text-transparency.25474/).
 
 ### Luafiles
 
