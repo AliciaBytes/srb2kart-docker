@@ -62,10 +62,10 @@ COPY --from=builder /srb2kart/bin/Linux64/Release/lsdl2srb2kart /usr/bin/srb2kar
 COPY --from=builder /srb2kart-assets/* /srb2kart
 COPY entrypoint.sh entrypoint.sh
 
-RUN mkdir -p /addons /data /logs /luafiles /srb2kart/data/.srb2kart \
-    && ln -sf /srb2kart/addons /addons \
-    && ln -sf /srb2kart/data/.srb2kart /data \
-    && ln -sf /srb2kart/luafiles /luafiles \
+RUN mkdir -p /addons /data /logs /luafiles \
+    && ln -sf /addons /srb2kart/addons \
+    && ln -sf /data /srb2kart/data \
+    && ln -sf /luafiles /srb2kart/luafiles \
     && chmod a+x entrypoint.sh
 
 VOLUME /addons
