@@ -38,10 +38,6 @@ This folder is mapped as a volume at `/data` and holds general game data, and co
 - `config.cfg`: general game configuration and [console variables](https://wiki.srb2.org/wiki/Console/Variables).
 - `adedsrv.cfg`: A [console script](https://wiki.srb2.org/wiki/Console_script) file that automatically gets loaded when starting the dedicated server. For example setting a nice [colored servername](https://mb.srb2.org/threads/colored-server-name-tutorial-chat-text-transparency.25474/).
 
-### Logs
-
-This folder is mapped as a volume at `/logs` and contains text files that are automatically created by the server for logging purposes. One notable file is `ban.txt` which stores information on banned players. Deleting this will also cause banned players to be unbanned. See: [Data files#Log files](https://wiki.srb2.org/wiki/Data_files#Log_files)
-
 ### Luafiles
 
 This folder is mapped as a volume at `/luafiles` and stores files created by lua scripts. Some addons might assume that this folder will persist for them to write data to.
