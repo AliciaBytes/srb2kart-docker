@@ -1,0 +1,29 @@
+---
+name: Check building the docker image and possibly push
+
+on:
+  pull_request:
+    branches: [main]
+
+env:
+  IMAGE_NAME: srb2kart
+
+jobs:
+  container:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install qemu dependency
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y qemu-user-static
+      - name: Buildah Build
+        id: build-image
+        uses: redhat-actions/buildah-build@v2.12
+        with:
+          image: ${{ env.IMAGE_NAME }}
+          tags: latest 1 1.6 1.6.${{ github.run_id }}
+          archs: amd64, arm64
+          containerfiles: |
+            ./Dockerfile
