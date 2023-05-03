@@ -21,7 +21,7 @@ The tags for this container will be in varying granularities. As a basis you hav
 - `USEUPNP`: Turns on Universal Plug and Play support. This feature is untested.
 - `WARP`: Sets what map to warp to at the beginning of the game.
 
-For more information see the official documentation on [Command-line parameters](https://wiki.srb2.org/wiki/Command_line_parameters) since the environment variables for the docker container mirror those. You can also pass them as command-line arguments, but environment variables are recommended.
+For more information see the official documentation on [Command-line parameters](https://wiki.srb2.org/wiki/Command_line_parameters) since the environment variables for the docker container mirror those. You can also pass them as command-line arguments, but environment variables are recommended. Those might not necessarily work since the wiki is focused on srb2, not srb2kart.
 
 ## Persistent Data
 
@@ -35,18 +35,15 @@ This folder is mapped as a volume at `/addons` and should be used to store addon
 
 This folder is mapped as a volume at `/data` and holds general game data, and configuration files. Some notable files are:
 
-- `kartserv.cfg`: A [console script](https://wiki.srb2.org/wiki/Console_script) file that automatically gets loaded when starting the dedicated server. For example setting general game configuration, [console variables](https://wiki.srb2.org/wiki/Console/Variables), or a nice [colored server name](https://mb.srb2.org/threads/colored-server-name-tutorial-chat-text-transparency.25474/).
+- `.srb2kart/kartserv.cfg`: A [console script](https://wiki.srb2.org/wiki/Console_script) file that automatically gets loaded when starting the dedicated server. For example setting general game configuration, [console variables](https://wiki.srb2.org/wiki/Console/Variables), or a nice [colored server name](https://mb.srb2.org/threads/colored-server-name-tutorial-chat-text-transparency.25474/).
 
-### Luafiles
-
-This folder is mapped as a volume at `/luafiles` and stores files created by lua scripts. Some addons might assume that this folder will persist for them to write data to.
 
 ## Running With Docker
 
 To run the server normally with docker, just execute
 
 ```sh
-docker run -it --name srb2kart -v /path/on/host/addons:/addons -v /path/on/host/data:/data -v /path/on/host/logs:/logs -v /path/on/host/luafiles:/luafiles -e ROOM_ID=33 -p 5029:5029/udp aliciabytes/srb2kart:latest
+docker run -it --name srb2kart -v /path/on/host/addons:/addons -v /path/on/host/data:/data -e ROOM_ID=33 -p 5029:5029/udp aliciabytes/srb2kart:latest
 ```
 
 ## Running With Docker Compose
